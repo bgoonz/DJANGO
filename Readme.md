@@ -18,8 +18,8 @@ django-admin
 django-admin startproject mypage
 ```
 
-
 #### Within the mypage directory that gets created:
+
 ```
 - mypage/
     - manage.py
@@ -33,7 +33,6 @@ django-admin startproject mypage
 
 - The settings.py and urls.py files are the ones that we will be working with the most.
 
-
 ##### Start Development Server
 
 ```bash
@@ -41,5 +40,8 @@ python3 manage.py runserver
 
 ```
 
+##### Create an app
 
-
+```bash
+python3 manage.py startapp challenges
+```
