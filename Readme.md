@@ -388,3 +388,10 @@ def monthly_challenge(request, month):
     else:
         return HttpResponse(response_data)
 ```
+
+---
+
+
+## URLS Views & Dynamic View Logic:
+
+
