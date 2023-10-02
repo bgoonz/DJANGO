@@ -28,3 +28,19 @@
     - **memoryview:** Memory view object of byte sequences
 
 Note: Python is dynamically typed, meaning you don't have to declare the data type of a variable when you create it. The Python interpreter infers the type based on the value you assign to the variable
+
+
+**.keys()** - returns a list of all the keys in a dictionary
+
+>example:
+```py
+person = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+
+keys = person.keys()
+# keys will be: ["name", "age", "city"]
+```
+

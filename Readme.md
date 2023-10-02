@@ -1,5 +1,8 @@
 # Django
 
+## [Python Notes](./00-notes/Python.md)
+
+
 ### Install Django
 
 ```bash
@@ -270,3 +273,7 @@ urlpatterns = [
     path("<str:month>", views.monthly_challenge)
 ]
 ```
+
+
+
+### Redirects:
