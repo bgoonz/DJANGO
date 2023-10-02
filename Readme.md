@@ -196,7 +196,7 @@ def monthly_challenge(request, month):
 
 ```py
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
 # Create your views here.
 
@@ -210,7 +210,7 @@ def monthly_challenge(request, month):
     elif month == 'march':
         challenge_text = "Learn Django for at least 20 minutes every day!"
     else:
-        return HttpResponse("This month is not supported!")
+        return HttpResponseNotFound("This month is not supported!")
 
     return HttpResponse(challenge_text)
 ```
