@@ -547,3 +547,8 @@ class ChallengesConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "challenges"
 ```
+
+![Template Directory](./images/2023-10-02-15-42-14.png)
+
+**Why the template is located in `challenges/templates/challenges/challenge.html`**
+- It is considered best practice to repeat your app name in the templates folder because if you have multiple apps in your project, they might have similar template names and this will help avoid conflicts.
