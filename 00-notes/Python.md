@@ -42,5 +42,45 @@ person = {
 
 keys = person.keys()
 # keys will be: ["name", "age", "city"]
+# This is actually just an object that looks like a list so in order to get an actual list we need to wrap it in the list function:
+keys = list(person.keys())
+
 ```
+ 
+- Dictonaries are by default ordered in Python so you can count on the contents of the list comming out in the order they occured in the dictionary.
+
+
+### len() function
+
+# `len()` Function in Python
+
+## Overview
+The `len()` function is a built-in Python function that returns the number of items in an object.
+
+## Syntax
+
+```python
+len(object)
+```
+
+- **object**: The object whose length you want to retrieve. This can be a string, list, tuple, dictionary, or any other object with a defined length.
+
+## Examples
+
+1. **String**: Get the length of a string.
+
+```python
+    string = "Hello, World!"
+    print(len(string))  # Outputs: 13
+```
+
+2. **List**: Get the length of a list.
+
+```python
+    numbers = [1, 2, 3, 4, 5]
+    print(len(numbers))  # Outputs: 5
+```
+
+And so on for other data types...
+
 
