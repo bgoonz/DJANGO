@@ -471,3 +471,79 @@ urlpatterns = [
 ```
 
 ![What are URLS](./images/2023-10-02-14-14-50.png)
+
+---
+
+---
+
+## Templates & Static Files:
+
+1. Create a new directory called templates in the challenges directory and create a subfolder called challenges inside the templates directory, create your html file in there.
+2. inside your `views.py` import `from django.template.loader import render_to_string`
+3. In views.py:
+
+```py
+def monthly_challenge(request, month):
+    try:
+        challenge_text = monthly_challenges[month]
+        response_data = render_to_string("challenges/challenge.html")
+    except KeyError:
+        return HttpResponseNotFound("<h2>This month is not supported!</h2>")
+    else:
+        return HttpResponse(response_data)
+```
+
+- This alone won't work so we need to go into settings.py and add the following:
+
+> This is not the best way to make Django aware of our templates folder...
+
+```py
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+            BASE_DIR / "challenges" / "templates",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
+        },
+    }
+]
+```
+
+**A better way to make Django aware of our templates folder**
+
+> The `"APP_DIRS": True,` line tells Django to look for a templates folder in each of our apps.
+
+> still in the settings.py file:
+
+```py
+INSTALLED_APPS = [
+    "challenges",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+]
+```
+
+where `challenges` is the name of our app in the apps.py file.
+
+> apps.py
+
+```py
+from django.apps import AppConfig
+
+
+class ChallengesConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "challenges"
+```
