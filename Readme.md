@@ -602,3 +602,11 @@ Example:
  <h1>{{month_name | title}} Challenge</h1>
 ```
 - Here this outputs the month name with the first letter of each word capitalized.
+
+
+
+**Django Template Language (DTL) Tags**
+- [Docs](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#ref-templates-builtins-tags)
+
+**for tag example**
+
