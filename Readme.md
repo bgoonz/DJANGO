@@ -552,3 +552,42 @@ class ChallengesConfig(AppConfig):
 
 **Why the template is located in `challenges/templates/challenges/challenge.html`**
 - It is considered best practice to repeat your app name in the templates folder because if you have multiple apps in your project, they might have similar template names and this will help avoid conflicts.
+
+
+---
+
+### Django Template Language (DTL):
+> here we add a dictonary to the render method that provides the context for the template.
+
+```py
+def monthly_challenge(request, month):
+    try:
+        challenge_text = monthly_challenges[month]
+        return render(request, "challenges/challenge.html", {
+            "text": challenge_text,
+            "month_name": month.capitalize()
+        })
+    except KeyError:
+        return HttpResponseNotFound("<h2>This month is not supported!</h2>")
+```
+
+- We can then access the context in the template using the `{{ }}` syntax.
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Challenge</title>
+</head>
+<body>
+ <h1>This Month's Challenge</h1>
+ <h2>{{text}}</h2>
+</body>
+</html>
+```
+
+
+
