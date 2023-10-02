@@ -214,3 +214,59 @@ def monthly_challenge(request, month):
 
     return HttpResponse(challenge_text)
 ```
+
+
+**Telling Django what data type to expext in dynamic path segments**
+
+```py
+from django.urls import path
+from . import views
+
+# UrlConfig
+urlpatterns = [
+    path("<str:month>", views.monthly_challenge)
+]
+```
+
+> The `<str:month>` tells Django to expect a string value in the month variable.
+
+
+**Handlin month input as either string or number**
+
+```py
+# Views.py
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound
+
+# Create your views here.
+
+
+def monthly_challenge_by_number(request, month):
+    return HttpResponse(month)
+
+
+def monthly_challenge(request, month):
+    challenge_text = None
+    if month == 'january':
+        challenge_text = "Eat no meat for the entire month!"
+    elif month == 'february':
+        challenge_text = "Walk for at least 20 minutes every day!"
+    elif month == 'march':
+        challenge_text = "Learn Django for at least 20 minutes every day!"
+    else:
+        return HttpResponseNotFound("This month is not supported!")
+
+    return HttpResponse(challenge_text)
+```
+
+```py
+# Urls.py
+from django.urls import path
+from . import views
+
+# UrlConfig
+urlpatterns = [
+    path("<int:month>", views.monthly_challenge_by_number),
+    path("<str:month>", views.monthly_challenge)
+]
+```
