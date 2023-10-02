@@ -2,6 +2,8 @@
 
 ## [Python Notes](./00-notes/Python.md)
 
+## [Django Docs](https://docs.djangoproject.com/en/4.2/intro/)
+
 ### Install Django
 
 ```bash
@@ -557,6 +559,7 @@ class ChallengesConfig(AppConfig):
 ---
 
 ### Django Template Language (DTL):
+### [Docs](https://docs.djangoproject.com/en/4.2/ref/templates/language/)
 > here we add a dictonary to the render method that provides the context for the template.
 
 ```py
@@ -589,5 +592,13 @@ def monthly_challenge(request, month):
 </html>
 ```
 
+- **Note** you cannot exicute python code inside of the `{{ }}` syntax.
 
+**Django Template Language (DTL) Filters**
+- [Docs](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#ref-templates-builtins-filters)
 
+Example:
+```html
+ <h1>{{month_name | title}} Challenge</h1>
+```
+- Here this outputs the month name with the first letter of each word capitalized.
