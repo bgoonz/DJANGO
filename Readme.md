@@ -610,3 +610,29 @@ Example:
 
 **for tag example**
 
+```html
+      {% for month in months %}
+      <li><a href="/challenges/{{ month }}"> {{ month |title }}</a></li>
+      {% endfor %}
+```
+
+**With dynamic links**
+
+```html
+      {% for month in months %}
+      <li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
+      {% endfor %}
+```
+
+- Where `month-challenge` is the name of the url pattern in the urls.py file and `month` is the variable we are passing to the url pattern.
+> also seen here:
+
+```py
+def monthly_challenge_by_number(request, month):
+    months = list(monthly_challenges.keys())
+    if month > len(months):
+        return HttpResponseNotFound("Invalid month!")
+    redirect_month = months[month - 1]
+    redirect_path = reverse("month-challenge", args=[redirect_month])
+    return HttpResponseRedirect(redirect_path)
+```

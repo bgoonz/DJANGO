@@ -7,10 +7,10 @@
   </head>
 
   <body>
-    <ul>
-      {% for month in months %}
-      <li><a href="/challenges/{{ month }}"> {{ month |title }}</a></li>
-      {% endfor %}
+    <ul style="font-weight:bold">
+        {% for month in months %}
+        <li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
+        {% endfor %}
     </ul>
   </body>
 </html>
