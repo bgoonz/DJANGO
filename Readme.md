@@ -2,7 +2,6 @@
 
 ## [Python Notes](./00-notes/Python.md)
 
-
 ### Install Django
 
 ```bash
@@ -194,7 +193,6 @@ def monthly_challenge(request, month):
 
 ```
 
-
 **Revised views.py**
 
 ```py
@@ -218,7 +216,6 @@ def monthly_challenge(request, month):
     return HttpResponse(challenge_text)
 ```
 
-
 **Telling Django what data type to expext in dynamic path segments**
 
 ```py
@@ -232,7 +229,6 @@ urlpatterns = [
 ```
 
 > The `<str:month>` tells Django to expect a string value in the month variable.
-
 
 **Handlin month input as either string or number**
 
@@ -274,10 +270,7 @@ urlpatterns = [
 ]
 ```
 
-
-
 ### Redirects:
-
 
 ```py
 from django.shortcuts import render
@@ -323,4 +316,28 @@ def monthly_challenge(request, month):
 
 > Now when we put in a number we get redirected to the correct month.
 
+**Django Reverse & named URL patterns**
 
+```py
+from django.urls import path
+from . import views
+
+# UrlConfig
+urlpatterns = [
+    path("<int:month>", views.monthly_challenge_by_number),
+    path("<str:month>", views.monthly_challenge, name="month-challenge"),
+```
+
+```py
+from django.urls import reverse
+
+#...
+def monthly_challenge_by_number(request, month):
+    months = list(monthly_challenges.keys())
+    if month > len(months):
+        return HttpResponseNotFound("Invalid month!")
+    redirect_month = months[month - 1]
+    redirect_path = reverse("month-challenge", args=[redirect_month])
+    return HttpResponseRedirect(redirect_path)
+#... rest of code
+```
