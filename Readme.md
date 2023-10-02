@@ -75,3 +75,51 @@ def index(request):
 Here the HttpResponse we are returning is an instance of the HttpResponse class. This class is defined in the django.http module. This module contains classes that handle requests and responses.
     
 - In order for Django to know when to call the view function we need to create an adjacent file called `urls.py` in the same directory as the `views.py` file.
+
+
+```py
+from django.urls import path
+from . import views
+# UrlConfig
+urlpatterns = [
+    path("january", views.index)
+]
+
+```
+
+1. from django.urls import path: This line imports the path function from the django.urls module. The path function is used to define URL patterns in Django.
+
+2. from . import views: This line imports the views module from the current directory (denoted by the dot .). In Django, views are Python functions that handle HTTP requests and return HTTP responses.
+
+3. urlpatterns = [...]: This line creates a list called urlpatterns which will store all the URL patterns for your Django project.
+
+4. path("january", views.index): This line defines a URL pattern. It uses the path function to specify that any request to the "/january" URL should be handled by the index view function imported from the views module.
+
+
+**In the global urls.py file**
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("challenges/", include("challenges.urls"))
+    ]
+```
+
+`path("challenges/", include("challenges.urls"))` tells us that we want to forward any requests that start with challenges/ to the challenges.urls module. This module will then handle the request further.
+
+
+### When we forward from:
+
+```py
+    path("challenges/", include("challenges.urls"))
+    # To...
+    path("january", views.index)
+```
+- We end up with a url of `challenges/january`
+- We get the following:
+
+
+![This works!](./images/2023-10-02-09-50-25.png)
