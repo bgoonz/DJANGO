@@ -123,3 +123,6 @@ urlpatterns = [
 
 
 ![This works!](./images/2023-10-02-09-50-25.png)
+
+
+![Request Response Flow](./images/2023-10-02-09-54-03.png)
