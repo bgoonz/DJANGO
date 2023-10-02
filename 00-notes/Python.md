@@ -105,13 +105,9 @@ greeting = f"Hello, {name}!"
 print(greeting)  # Outputs: Hello, John!
 ```
 
-
 ---
 
-
 ### Multi Line Strings:
-
-
 
 Python allows for the creation of multi-line strings. These strings can be created using three single (`'''`) or double (`"""`) quotes. Anything enclosed between these quotes is considered a string, and it can span multiple lines.
 
@@ -123,3 +119,4 @@ string that uses three single
 quotes.'''
 print(string1)
 
+```
