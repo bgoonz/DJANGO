@@ -86,3 +86,21 @@ len(object)
 ```
 
 And so on for other data types...
+
+---
+
+## F-string interpolation:
+
+# Python String Interpolation: f-strings
+
+Starting from **Python 3.6**, you can use _formatted string literals_, commonly known as **f-strings** to embed expressions inside string literals.
+
+## Basic Usage
+
+To create an f-string, prefix the string with the letter `f` or `F`. Expressions inside curly braces `{}` are evaluated at runtime and then formatted using the specified format string.
+
+```python
+name = "John"
+greeting = f"Hello, {name}!"
+print(greeting)  # Outputs: Hello, John!
+```

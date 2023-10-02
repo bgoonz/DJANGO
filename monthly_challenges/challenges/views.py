@@ -35,7 +35,8 @@ def monthly_challenge_by_number(request, month):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month]
+        response_data = f"<h1 style=\"color:blue\">{challenge_text}</h1>"
     except KeyError:
-        return HttpResponseNotFound("This month is not supported!")
+        return HttpResponseNotFound("<h2>This month is not supported!</h2>")
     else:
-        return HttpResponse(challenge_text)
+        return HttpResponse(response_data)
