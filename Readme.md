@@ -647,3 +647,65 @@ def monthly_challenge_by_number(request, month):
     <p>Please <a href="{% url 'login' %}">login</a>.</p>
 {% endif %}
 ```
+
+
+**Template Inheritance**
+> We will put our general templates in the root directory of the project because they may be shared across multiple apps.
+![Templates](./images/2023-10-03-09-34-12.png)
+
+- In our base template:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}My Challenges{% endblock %}</title>
+</head>
+<body>
+    
+</body>
+</html>
+```
+
+- The `<title>{% block page_title %}My Challenges{% endblock %}</title>` block is a placeholder where we can inject content from other templates.
+
+- In the example above `My Challenges` is the default fallback value if no other value is provided.
+
+> in settings.py
+
+```py
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+             BASE_DIR / "templates",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
+        },
+    }
+]
+```
+
+> we set the BASE_DIR to the templates folder in the root directory of the project.
+> Now in our index.html we can extend the base template.
+
+```html
+{% extends "base.html" %} {% block page_title %} All Challenges {% endblock %} {% block content %}
+<ul style="font-weight: bold">
+  {% for month in months %}
+  <li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+
+```
