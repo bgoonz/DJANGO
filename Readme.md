@@ -636,3 +636,14 @@ def monthly_challenge_by_number(request, month):
     redirect_path = reverse("month-challenge", args=[redirect_month])
     return HttpResponseRedirect(redirect_path)
 ```
+
+
+**If tag**
+
+```html
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+{% else %}
+    <p>Please <a href="{% url 'login' %}">login</a>.</p>
+{% endif %}
+```
