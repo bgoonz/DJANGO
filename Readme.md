@@ -658,15 +658,16 @@ def monthly_challenge_by_number(request, month):
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block page_title %}My Challenges{% endblock %}</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
 </html>
+
 ```
 
 - The `<title>{% block page_title %}My Challenges{% endblock %}</title>` block is a placeholder where we can inject content from other templates.
@@ -699,13 +700,15 @@ TEMPLATES = [
 > Now in our index.html we can extend the base template.
 
 ```html
-{% extends "base.html" %} {% block page_title %} All Challenges {% endblock %} {% block content %}
+{% extends "base.html" %} 
+
+{% block page_title %} All Challenges {% endblock %} 
+
+{% block content %}
 <ul style="font-weight: bold">
   {% for month in months %}
   <li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
   {% endfor %}
 </ul>
-
 {% endblock %}
-
 ```
