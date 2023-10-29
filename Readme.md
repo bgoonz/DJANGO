@@ -752,3 +752,88 @@ Now that we gave the index view a name we can use it in the url tag.
 
 
 
+---
+
+### More on Django Template Language (DTL):
+
+#### Accessing Dictionary Fields in Templates
+
+When accessing dictionary data in a template, you DON'T use this syntax:
+
+**{{ myDictionary\['some\_key'\] }}**
+
+Instead, you use the dot notation - as if it were a regular Python object:
+
+**{{ myDictionary.some\_key }}**
+
+This might look strange, but keep in mind, that the DTL is a custom-made language. It looks like Python, but ultimately it is NOT Python - it's a language parsed and executed by Django. Hence, its syntax can deviate - just as it does here.
+
+Again, you'll see this in action later in the course!
+
+#### Calling Functions in Templates
+
+Calling functions in templates also works differently than it does in Python.
+
+Instead of calling it, you use functions like regular variables or properties.
+
+I.e., instead of:
+
+**{{ result\_from\_a\_function() }}**
+
+you would use
+
+**{{ result\_from\_a\_function }}**
+
+---
+
+
+### 404 Template Page:
+>`templates/404.html`
+```html
+{% extends "base.html" %}
+
+{% block page_title %}
+    Something webt wrong, we could not find that page! 
+{% endblock %}
+
+{% block content %}
+    <h1>We could not find that page!</h1>
+    <p>Sorry about that, we could not find the page you were looking for. Please try again.</p>
+{% endblock %}
+```
+
+
+> `views.py`
+
+```py
+from django.template.loader import render_to_string
+#...
+def monthly_challenge(request, month):
+    try:
+        challenge_text = monthly_challenges[month]
+        return render(
+            request,
+            "challenges/challenge.html",
+            {"text": challenge_text, "month_name": month},
+        )
+    except KeyError:
+        response_data = render_to_string("404.html")
+        return HttpResponseNotFound(response_data)
+```
+
+
+**Alternative way to handle 404 errors**
+
+```py
+from django.http import Http404
+def monthly_challenge(request, month):
+    try:
+        challenge_text = monthly_challenges[month]
+        return render(
+            request,
+            "challenges/challenge.html",
+            {"text": challenge_text, "month_name": month},
+        )
+    except KeyError:
+        raise Http404()
+```
