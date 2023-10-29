@@ -712,3 +712,43 @@ TEMPLATES = [
 </ul>
 {% endblock %}
 ```
+
+
+**How to use partials in Django Templates**
+
+```html
+{% include "challenges/includes/header.html" %}
+```
+
+
+- In the header we can make the links dynamic by using the `url` tag.
+
+>urls.py:
+
+```py
+from django.urls import path
+from . import views
+
+# UrlConfig
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("<int:month>", views.monthly_challenge_by_number),
+    path("<str:month>", views.monthly_challenge, name="month-challenge"),
+]
+```
+
+Now that we gave the index view a name we can use it in the url tag.
+
+```html
+<header>
+    <nav>
+        <a href="{% url "index" %}">All Challenges</a>
+    </nav>
+</header>
+
+```
+
+- It is important to note that an included html snippet will inherit the context of the template it is included in... (i.e. pageName etc...).
+
+
+
