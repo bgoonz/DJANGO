@@ -837,3 +837,69 @@ def monthly_challenge(request, month):
     except KeyError:
         raise Http404()
 ```
+
+---
+
+#### Adding Static Files:
+
+- First in the `settings.py` we need to ensure `"django.contrib.staticfiles",` is in the `INSTALLED_APPS` list. It should be by default but if it is not add it.
+
+```py
+INSTALLED_APPS = [
+    "challenges",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+]
+```
+
+- Then we create a directory called `static` in the root directory of the project and add another directory called `challenges` within it (in this case...).
+
+
+> base.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block page_title %}My Challenges{% endblock %}</title>
+    {% block css_files %}
+    
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>
+```
+
+
+
+>index.html
+
+```html
+{% extends "base.html" %} 
+{% load static %}
+
+{% block css_files%}
+<link rel="stylesheet" href="{%static "challenges/challenges.css" %}">
+{% endblock %}
+
+
+
+{% block page_title %} All Challenges {% endblock %} 
+
+{% block content %}
+{% include "challenges/includes/header.html" %}
+<ul style="font-weight: bold">
+  {% for month in months %}
+  <li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
+```
