@@ -618,11 +618,7 @@ Example:
 
 **With dynamic links**
 
-```html
-      {% for month in months %}
-      <li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
-      {% endfor %}
-```
+
 
 - Where `month-challenge` is the name of the url pattern in the urls.py file and `month` is the variable we are passing to the url pattern.
 > also seen here:
