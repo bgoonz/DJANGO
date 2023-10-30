@@ -903,3 +903,13 @@ INSTALLED_APPS = [
 </ul>
 {% endblock %}
 ```
+
+
+**How to load global styles from a static folder in the root directory of the project**
+> settings.py
+
+```py
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+```
