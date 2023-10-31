@@ -903,3 +903,28 @@ STATICFILES_DIRS = [
 ### NOTE TO SELF:
 
 - When you are working with static css files... if you don't see your changes reflected try clearing your cache and reloading the page (ctrl + shift + del) in chrome.
+
+
+---
+
+
+### Building Static URLs Dynamically
+> Imagine, that you want to build a static URL where some part of the URL (e.g. the filename) is actually stored in a variable that's exposed to the template.
+
+So you might want to build the URL like this:
+
+**{% static "my\_path/to/" + the\_file %}**
+
+Here, "**the\_file**" would be a variable holding the actual filename.
+
+The above code would fail.
+
+Instead, you can use the "**add**" filter provided by Django to construct this path dynamically:
+
+**{% static "my\_path/to/"|add:the\_file %}**
+
+
+---
+
+
+
