@@ -925,6 +925,24 @@ Instead, you can use the "**add**" filter provided by Django to construct this p
 
 
 ---
+---
+
+## Building a Blog with Django:
+
+> blog/urls.py:
+
+```py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("", views.starting_page, name="starting-page"),
+    path("posts", views.posts, name="posts-page"),
+    path("posts/<slug:slug>", views.post_detail, name="post-detail-page")
+]
+
+```
+- The `<slug:slug>` is a dynamic path segment that will be used to identify a blog post with a slug of the format `my-post-title` or in other words alphanumerical characters separated by dashes.
 
 
 

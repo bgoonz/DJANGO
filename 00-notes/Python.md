@@ -120,3 +120,35 @@ quotes.'''
 print(string1)
 
 ```
+
+---
+
+### Pass Statment:
+
+In Python, the `pass` statement is a null operation or a placeholder statement. It does nothing when executed and is primarily used as a placeholder where syntactically some code is required but no action is desired or necessary. It is often used when you're writing code that you plan to implement later or as a temporary placeholder when defining functions, classes, loops, or conditional statements.
+
+Here's an example of how `pass` can be used:
+
+```py
+if condition:
+    pass  # Placeholder for future code
+else:
+    # Some code here
+```
+
+In this example, if the `condition` is met, the `pass` statement is executed, doing nothing. It allows you to have a syntactically correct code block without any specific action. Later, you can come back and replace the `pass` statement with actual code.
+
+Similarly, you can use `pass` in functions or classes that you're defining but haven't implemented fully yet:
+
+```py
+def my_function():
+    pass  # Placeholder for the function's implementation
+
+class MyClass:
+    def __init__(self):
+        pass  # Placeholder for the class constructor
+
+    def some_method(self):
+        pass  # Placeholder for a class method
+
+```
