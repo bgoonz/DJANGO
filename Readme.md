@@ -553,13 +553,15 @@ class ChallengesConfig(AppConfig):
 ![Template Directory](./images/2023-10-02-15-42-14.png)
 
 **Why the template is located in `challenges/templates/challenges/challenge.html`**
-- It is considered best practice to repeat your app name in the templates folder because if you have multiple apps in your project, they might have similar template names and this will help avoid conflicts.
 
+- It is considered best practice to repeat your app name in the templates folder because if you have multiple apps in your project, they might have similar template names and this will help avoid conflicts.
 
 ---
 
 ### Django Template Language (DTL):
+
 ### [Docs](https://docs.djangoproject.com/en/4.2/ref/templates/language/)
+
 > here we add a dictonary to the render method that provides the context for the template.
 
 ```py
@@ -576,56 +578,57 @@ def monthly_challenge(request, month):
 
 - We can then access the context in the template using the `{{ }}` syntax.
 
-
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monthly Challenge</title>
-</head>
-<body>
- <h1>This Month's Challenge</h1>
- <h2>{{text}}</h2>
-</body>
+  </head>
+  <body>
+    <h1>This Month's Challenge</h1>
+    <h2>{{text}}</h2>
+  </body>
 </html>
 ```
 
 - **Note** you cannot exicute python code inside of the `{{ }}` syntax.
 
 **Django Template Language (DTL) Filters**
+
 - [Docs](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#ref-templates-builtins-filters)
 
 Example:
+
 ```html
- <h1>{{month_name | title}} Challenge</h1>
+<h1>{{month_name | title}} Challenge</h1>
 ```
+
 - Here this outputs the month name with the first letter of each word capitalized.
 
-
-
 **Django Template Language (DTL) Tags**
+
 - [Docs](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#ref-templates-builtins-tags)
 
 **for tag example**
 
 ```html
-      {% for month in months %}
-      <li><a href="/challenges/{{ month }}"> {{ month |title }}</a></li>
-      {% endfor %}
+{% for month in months %}
+<li><a href="/challenges/{{ month }}"> {{ month |title }}</a></li>
+{% endfor %}
 ```
 
 **With dynamic links**
 
 ```html
-      {% for month in months %}
-      <li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
-      {% endfor %}
+{% for month in months %}
+<li><a href="{% url 'month-challenge' month %}"> {{ month |title }}</a></li>
+{% endfor %}
 ```
 
 - Where `month-challenge` is the name of the url pattern in the urls.py file and `month` is the variable we are passing to the url pattern.
-> also seen here:
+  > also seen here:
 
 ```py
 def monthly_challenge_by_number(request, month):
@@ -637,26 +640,25 @@ def monthly_challenge_by_number(request, month):
     return HttpResponseRedirect(redirect_path)
 ```
 
-
 **If tag**
 
 ```html
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}!</p>
+<p>Welcome, {{ user.username }}!</p>
 {% else %}
-    <p>Please <a href="{% url 'login' %}">login</a>.</p>
+<p>Please <a href="{% url 'login' %}">login</a>.</p>
 {% endif %}
 ```
 
-
 **Template Inheritance**
+
 > We will put our general templates in the root directory of the project because they may be shared across multiple apps.
-![Templates](./images/2023-10-03-09-34-12.png)
+> ![Templates](./images/2023-10-03-09-34-12.png)
 
 - In our base template:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -667,7 +669,6 @@ def monthly_challenge_by_number(request, month):
     {% block content %}{% endblock %}
   </body>
 </html>
-
 ```
 
 - The `<title>{% block page_title %}My Challenges{% endblock %}</title>` block is a placeholder where we can inject content from other templates.
@@ -700,10 +701,7 @@ TEMPLATES = [
 > Now in our index.html we can extend the base template.
 
 ```html
-{% extends "base.html" %} 
-
-{% block page_title %} All Challenges {% endblock %} 
-
+{% extends "base.html" %} {% block page_title %} All Challenges {% endblock %}
 {% block content %}
 <ul style="font-weight: bold">
   {% for month in months %}
@@ -713,17 +711,15 @@ TEMPLATES = [
 {% endblock %}
 ```
 
-
 **How to use partials in Django Templates**
 
 ```html
 {% include "challenges/includes/header.html" %}
 ```
 
-
 - In the header we can make the links dynamic by using the `url` tag.
 
->urls.py:
+> urls.py:
 
 ```py
 from django.urls import path
@@ -749,8 +745,6 @@ Now that we gave the index view a name we can use it in the url tag.
 ```
 
 - It is important to note that an included html snippet will inherit the context of the template it is included in... (i.e. pageName etc...).
-
-
 
 ---
 
@@ -786,22 +780,20 @@ you would use
 
 ---
 
-
 ### 404 Template Page:
->`templates/404.html`
+
+> `templates/404.html`
+
 ```html
-{% extends "base.html" %}
-
-{% block page_title %}
-    Something webt wrong, we could not find that page! 
-{% endblock %}
-
-{% block content %}
-    <h1>We could not find that page!</h1>
-    <p>Sorry about that, we could not find the page you were looking for. Please try again.</p>
+{% extends "base.html" %} {% block page_title %} Something webt wrong, we could
+not find that page! {% endblock %} {% block content %}
+<h1>We could not find that page!</h1>
+<p>
+  Sorry about that, we could not find the page you were looking for. Please try
+  again.
+</p>
 {% endblock %}
 ```
-
 
 > `views.py`
 
@@ -820,7 +812,6 @@ def monthly_challenge(request, month):
         response_data = render_to_string("404.html")
         return HttpResponseNotFound(response_data)
 ```
-
 
 **Alternative way to handle 404 errors**
 
@@ -858,19 +849,16 @@ INSTALLED_APPS = [
 
 - Then we create a directory called `static` in the root directory of the project and add another directory called `challenges` within it (in this case...).
 
-
 > base.html
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block page_title %}My Challenges{% endblock %}</title>
-    {% block css_files %}
-    
-    {% endblock %}
+    {% block css_files %} {% endblock %}
   </head>
   <body>
     {% block content %}{% endblock %}
@@ -878,12 +866,10 @@ INSTALLED_APPS = [
 </html>
 ```
 
-
-
->index.html
+> index.html
 
 ```html
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% load static %}
 
 {% block css_files%}
@@ -892,7 +878,7 @@ INSTALLED_APPS = [
 
 
 
-{% block page_title %} All Challenges {% endblock %} 
+{% block page_title %} All Challenges {% endblock %}
 
 {% block content %}
 {% include "challenges/includes/header.html" %}
@@ -904,8 +890,8 @@ INSTALLED_APPS = [
 {% endblock %}
 ```
 
-
 **How to load global styles from a static folder in the root directory of the project**
+
 > settings.py
 
 ```py
@@ -914,6 +900,6 @@ STATICFILES_DIRS = [
 ]
 ```
 
-
 ### NOTE TO SELF:
+
 - When you are working with static css files... if you don't see your changes reflected try clearing your cache and reloading the page (ctrl + shift + del) in chrome.
