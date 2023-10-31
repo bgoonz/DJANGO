@@ -913,3 +913,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 ```
+
+
+### NOTE TO SELF:
+- When you are working with static css files... if you don't see your changes reflected try clearing your cache and reloading the page (ctrl + shift + del) in chrome.
