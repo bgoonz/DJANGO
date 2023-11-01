@@ -75,3 +75,12 @@
   font-size: 1.5rem;
   color: #353535;
 }
+
+
+.post img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  

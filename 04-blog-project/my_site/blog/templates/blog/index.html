@@ -12,16 +12,11 @@
 
 {% block content %}
 
-<header id="main-navigation">
-    <h1><a href="#">Bryan's Blog</a></h1>
-    <nav>
-        <a href="#">All Posts</a>
-    </nav>
-</header>
+
 
 <section id="welcome">
     <header>
-        <img src="https://avatars.githubusercontent.com/u/66654881?v=4" alt="Bryan - The Author" />
+        <img src="{% static "blog/images/bryan.png" %}" alt="Bryan - The Author" />
         <h2>Bryan's Blog</h2>
     </header>
     <p>Hi, I am Bryan and I love to blog about tech and the world.</p>
@@ -30,21 +25,7 @@
 <section id="latest-posts">
     <h2>My latest blog posts</h2>
     <ul>
-        <li>
-            <article class="post">
-                <a href="#">
-                    <img src="#" alt="Mountain Hiking" />
-                    <div class="post__content">
-                        <h3>Mountain Hiking</h3>
-                        <p>There's nothing like the views on top of a mountain.</p>
-                    </div>
-                </a>
-            </article>
-        </li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+      {% include "blog/includes/post.html" %}  
     </ul>
 </section>
 
