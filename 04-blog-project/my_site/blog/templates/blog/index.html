@@ -1,55 +1,57 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% load static %}
 
-
-{% block title %} My Blog {% endblock %} 
+{% block title %}
+    My Blog
+{% endblock %}
 
 {% block css_files %}
-<link rel="stylesheet" href="{% static "blog/index.css" %}" />
+    <link rel="stylesheet" href="{% static 'blog/index.css' %}" />
 {% endblock %}
 
 {% block content %}
 
 <header id="main-navigation">
-  <h1><a href="">Bryan's Blog</a></h1>
-  <nav>
-    <a href="">All Posts</a>
-  </nav>
+    <h1><a href="#">Bryan's Blog</a></h1>
+    <nav>
+        <a href="#">All Posts</a>
+    </nav>
 </header>
+
 <section id="welcome">
-  <header>
-    <img src="https://avatars.githubusercontent.com/u/66654881?v=4" alt="Bryan - The Author" />
-    <h2>Bryan's Blog</h2>
-  </header>
-  <p>Hi, I am Bryan and I love to blog about tech and the world.</p>
+    <header>
+        <img src="https://avatars.githubusercontent.com/u/66654881?v=4" alt="Bryan - The Author" />
+        <h2>Bryan's Blog</h2>
+    </header>
+    <p>Hi, I am Bryan and I love to blog about tech and the world.</p>
 </section>
 
 <section id="latest-posts">
-  <h2>My latest blog posts</h2>
-  <ul>
-    <li>
-      <article class="post">
-        <a href="">
-          <img sr="https://media.istockphoto.com/id/1288385045/photo/snowcapped-k2-peak.jpg" alt="Mountian Hiking" />
-          <div class="post__content">
-            <h3>Mountian Hiking</h3>
-            <p>There's nothing like the views on top of a mountian. </p>
-          </div>
-        </a>
-        </atricle>
-    </li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
+    <h2>My latest blog posts</h2>
+    <ul>
+        <li>
+            <article class="post">
+                <a href="#">
+                    <img src="#" alt="Mountain Hiking" />
+                    <div class="post__content">
+                        <h3>Mountain Hiking</h3>
+                        <p>There's nothing like the views on top of a mountain.</p>
+                    </div>
+                </a>
+            </article>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 </section>
 
 <section id="about">
-  <h2>About Me</h2>
-  <p>I love learning, teaching, music and programming.</p>
-   <p>My goal is to keep growing as a developer and if I can help you do the same I would be very happy too.</p> 
+    <h2>About Me</h2>
+    <p>I love learning, teaching, music, and programming.</p>
+    <p>My goal is to keep growing as a developer and if I can help you do the same, I would be very happy too.</p>
 </section>
 
 {% endblock %}
