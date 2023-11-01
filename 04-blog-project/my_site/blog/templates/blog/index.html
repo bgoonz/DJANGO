@@ -1,9 +1,43 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% block title %} My Blog {% endblock %} {% block content %}
+<header id="main-navigation">
+  <h1><a href="">Bryan's Blog</a></h1>
+  <nav>
+    <a href="">All Posts</a>
+  </nav>
+</header>
+<section id="welcome">
+  <header>
+    <img src="https://avatars.githubusercontent.com/u/66654881?v=4" alt="Bryan - The Author" />
+    <h2>Bryan's Blog</h2>
+  </header>
+  <p>Hi, I am Bryan and I love to blog about tech and the world.</p>
+</section>
 
-{% block title %} 
-    My Blog
-{% endblock %} 
+<section id="latest-posts">
+  <h2>My latest blog posts</h2>
+  <ul>
+    <li>
+      <article class="post">
+        <a href="">
+          <img sr="https://media.istockphoto.com/id/1288385045/photo/snowcapped-k2-peak.jpg?b=1&s=612x612&w=0&k=20&c=e1AiD8S8C5tvF8ZA24I2Q_5myDSgLdxwU385j_yzG-0=" alt="Mountian Hiking" />
+          <div class="post__content">
+            <h3>Mountian Hiking</h3>
+            <p>There's nothing like the views on top of a mountian. </p>
+          </div>
+        </a>
+        </atricle>
+    </li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</section>
 
-{% block content %}
-    <h1>Welcome to my blog!</h1>
+<section id="about">
+  <h2>About Me</h2>
+  <p>I love learning, teaching, music and programming.</p>
+   <p>My goal is to keep growing as a developer and if I can help you do the same I would be very happy too.</p> 
+</section>
+
 {% endblock %}
