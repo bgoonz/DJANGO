@@ -153,7 +153,6 @@ class MyClass:
 
 ```
 
-
 **Slice syntax**
 
 ```py
