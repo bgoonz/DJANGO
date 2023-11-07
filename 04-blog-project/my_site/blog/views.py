@@ -11,10 +11,11 @@ all_posts = [
         "date": date(2021, 7, 21),
         "title": "Mountain Hiking",
         "excerpt": "There's nothing like the views you get when hiking in the mountains! And I wasn't even prepared for what happened whilst I was enjoying the view!",
-        "content": """
-        Mountain hiking is an exhilarating experience. The thrill of reaching new heights, the panoramic views, and the crisp mountain air makes the journey worth every step. But it's not just about the summit. It's about the trail, the environment, and the memories you create along the way.
-        Preparing for a mountain hike requires careful planning. From selecting the right gear to studying the trail map, every detail counts. Respect for nature and understanding of the terrain are crucial to ensure safety. 
-        One of the best feelings in the world is standing on a mountain peak, looking out over the vast landscape, and knowing you conquered the climb.
+        "content": """Mountain hiking is an exhilarating experience. The thrill of reaching new heights, the panoramic views, and the crisp mountain air makes the journey worth every step.
+        
+        But it's not just about the summit. It's about the trail, the environment, and the memories you create along the way. Preparing for a mountain hike requires careful planning. From selecting the right gear to studying the trail map, every detail counts. 
+        
+        Respect for nature and understanding of the terrain are crucial to ensure safety. One of the best feelings in the world is standing on a mountain peak, looking out over the vast landscape, and knowing you conquered the climb.
         """,
     },
     {
@@ -57,8 +58,9 @@ def starting_page(request):
 
 
 def posts(request):
-    return render(request, "blog/all-posts.html")
+    return render(request, "blog/all-posts.html", {"all_posts": all_posts})
 
 
 def post_detail(request, slug):
-    return render(request, "blog/post-detail.html")
+    identified_post = next(post for post in all_posts if post["slug"] == slug)
+    return render(request, "blog/post-detail.html", {"post": identified_post})

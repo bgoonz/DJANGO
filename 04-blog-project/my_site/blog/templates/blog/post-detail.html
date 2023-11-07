@@ -1,38 +1,27 @@
-{% extends "base.html" %} {% load static %} {% block title %} Post Title {%
-endblock %} {% block css_files %}
+{% extends "base.html" %} 
+
+{% load static %} 
+
+{% block title %} 
+{{post.title}} 
+{% endblock %} 
+
+{% block css_files %}
 <link rel="stylesheet" href="{% static 'blog/post-detail.css' %}" />
 
-{% endblock %} {% block content %}
+{% endblock %} 
+
+{% block content %}
 <section id="summary">
-  <h2>Post Title</h2>
+  <h2>{{post.title}}</h2>
   <article>
-    <img src="{% static 'blog/images/woods.jpg' %}" alt="Image description" />
-    <address>By Bryan Guner</address>
-    <div>Last updated on <time> November 1st 2023 </time></div>
+    <img src="{% static 'blog/images/'|add:post.image %}" alt="{{post.title}}" />
+    <address>By {{post.author}}</address>
+    <div>Last updated on <time>{{post.date|date:"d M Y"}}</time></div>
   </article>
 </section>
 
 <main>
-  <p>
-    Dictionaries, Maps, and Hash Tables In Python, dictionaries (or dicts for
-    short) are a central data structure. Dicts store an arbitrary number of
-    objects, each identified by a unique dictionary key. Dictionaries are also
-    often called maps, hashmaps, lookup tables, or associative arrays. They
-    allow for the efficient lookup, insertion, and deletion of any object
-    associated with a given key.
-  </p>
-  <p>
-    Phone books make a decent real-world analog for dictionary objects. They
-    allow you to quickly retrieve the information (phone number) associated with
-    a given key (a person's name). Instead of having to read a phone book front
-    to back to find someone's number, you can jump more or less directly to a
-    name and look up the associated information.
-  </p>
-  <p>
-    This analogy breaks down somewhat when it comes to how the information is
-    organized to allow for fast lookups. But the fundamental performance
-    characteristics hold. Dictionaries allow you to quickly find the information
-    associated with a given key.
-  </p>
+{{post.content|linebreaks}}
 </main>
 {% endblock %}
