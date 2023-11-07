@@ -943,3 +943,10 @@ urlpatterns = [
 ```
 
 - The `<slug:slug>` is a dynamic path segment that will be used to identify a blog post with a slug of the format `my-post-title` or in other words alphanumerical characters separated by dashes.
+
+---
+---
+
+## Data & Models:
+
+
