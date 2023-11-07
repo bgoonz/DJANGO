@@ -152,3 +152,10 @@ class MyClass:
         pass  # Placeholder for a class method
 
 ```
+
+
+**Slice syntax**
+
+```py
+  # [-3:] this syntax slices the laste three elements off the array
+```
