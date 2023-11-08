@@ -949,4 +949,19 @@ urlpatterns = [
 
 ## Data & Models:
 
+### Databases:
+- There are two kinds of databases:
+    - SQL - store data in tables
+    - NoSQL - store data as documents in collections
+
+
+![SQL vs NoSQL](./images/2023-11-08-10-57-00.png)
+
+- In SQL all entires in a table must have the same exact set of fields... douments in a noSQL collection don't have as strict a set of rules.
+
+**Examples of engines for each:**
+
+> SQL: mySQL, PostgreSQL, SQLite
+> NoSQL: MongoDB, CassandraDB
+
 
