@@ -964,4 +964,15 @@ urlpatterns = [
 > SQL: mySQL, PostgreSQL, SQLite
 > NoSQL: MongoDB, CassandraDB
 
+#### SQL:
+
+![SQL basics](./images/2023-11-08-11-57-03.png)
+
+
+### Django Models
+- Allow us to focus on your data not the sql queries.
+- Define data models and use objects based on those models to run common operations
+- Django models translate instructions (written with python) into SQL queries.
+
+
 
