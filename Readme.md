@@ -975,4 +975,7 @@ urlpatterns = [
 - Django models translate instructions (written with python) into SQL queries.
 
 
+![Models File](./images/2023-11-08-12-32-16.png)
 
+
+##### [Model field reference](https://docs.djangoproject.com/en/4.2/ref/models/fields/)
